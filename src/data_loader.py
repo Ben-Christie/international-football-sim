@@ -17,6 +17,7 @@ def load_data():
     df['Goals Conceded 90'] = df['Goals Against'] / df['Total Fixtures']
 
     # set index to Nation so we can search for a row based on the name of the country
+    # can use df.loc("Spain") for example to get Spain's data instead of needing an ID
     df = df.set_index('Nation')
 
     return df

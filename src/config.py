@@ -20,5 +20,5 @@ WC26_GROUPS = {
 # some constants for the simulations
 N_SIMULATIONS = 1
 RANDOM_SEED = 42
-K_FACTOR = 20
-ELO_SCALE = 400
+K_FACTOR = 20  # How much a result moves the elo rating
+ELO_SCALE = 400  # division in the Elo formula
