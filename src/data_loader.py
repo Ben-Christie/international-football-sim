@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
-from pathlib import Path
-
-DATA_PATH = Path(__file__).parent.parent / "data" / "elo-ratings.csv"
+from config import DATA_PATH
 
 
 def load_data():
