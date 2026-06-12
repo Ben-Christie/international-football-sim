@@ -2,7 +2,7 @@ from pathlib import Path
 
 DATA_PATH = Path(__file__).parent.parent / "data" / "elo-ratings.csv"
 
-WC26_GROUPS = {
+WC26GROUPS = {
     "A": ["Mexico", "South Africa", "South Korea", "Czechia"],
     "B": ["Canada", "Bosnia and Herzegovina", "Qatar", "Switzerland"],
     "C": ["Brazil", "Morocco", "Haiti", "Scotland"],
@@ -20,5 +20,27 @@ WC26_GROUPS = {
 # some constants for the simulations
 N_SIMULATIONS = 1
 RANDOM_SEED = 42
-K_FACTOR = 20  # How much a result moves the elo rating
-ELO_SCALE = 400  # division in the Elo formula
+# How much a result moves the elo rating
+K_FACTOR_FINAL = 60
+K_FACTOR_KO = 50
+K_FACTOR_GROUP = 40
+ELO_SCALE = 600  # division in the Elo formula
+
+# tournament configurations
+
+WORLD_CUP = {
+    "name": "FIFA World Cup 2026",
+    "groups": WC26GROUPS,
+    "group_stage": {
+        "teams_per_group": 4,
+        "qualify_per_group": 2,
+        "best_third_places": 8,  # WC2026 specific
+        "points": {"win": 3, "draw": 1, "loss": 0}
+    },
+    "knockout_rounds": ["R32", "R16", "QF", "SF", "F"],
+    "match_types": {
+        "group": "G",
+        "knockout": "KO",
+        "final": "F"
+    }
+}
