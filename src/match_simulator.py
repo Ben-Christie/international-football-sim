@@ -10,6 +10,11 @@ def simulate_match(team_a, team_b, match_type, df):
     match_result = (random.choices(['A', 'D', 'B'], weights=[
                     p_win, p_draw, p_loss], k=1))[0]
 
+    # no draws in knockout games - resimulate until we get a winner
+    while match_type != 'G' and match_result == 'D':
+        match_result = (random.choices(['A', 'D', 'B'], weights=[
+                        p_win, p_draw, p_loss], k=1))[0]
+
     # create the score of the game
     team_a_goals, team_b_goals = get_score(team_a, team_b, match_result, df)
 
