@@ -1,8 +1,10 @@
-from config import ELO_SCALE, K_FACTOR_GROUP, K_FACTOR_KO, K_FACTOR_FINAL
+from config import ELO_SCALE, K_FACTOR_GROUP, K_FACTOR_KO
 import random
 import numpy as np
 
 # simulate a match between team A and team B based on the win percentages derived below
+
+
 def simulate_match(team_a, team_b, match_type, df):
     p_win, p_draw, p_loss = get_match_probabilities(team_a, team_b, df)
 
@@ -53,8 +55,10 @@ def get_score(team_a, team_b, match_result, df):
     # correct scores to results
     if match_result == 'A' and team_a_exp_score < team_b_exp_score:
         team_b_exp_score = team_a_exp_score * 0.8
+        team_a_exp_score += 1
     elif match_result == 'B' and team_a_exp_score > team_b_exp_score:
         team_a_exp_score = team_b_exp_score * 0.8
+        team_b_exp_score += 1
     elif match_result == 'D':
         # draw - converge both to their average
         avg = max(0.75, (team_a_exp_score + team_b_exp_score) / 2)
@@ -74,6 +78,8 @@ def get_score(team_a, team_b, match_result, df):
             return team_a_goals, team_b_goals
 
 # update elo rating for both teams base don result
+
+
 def update_elo(team_a, team_b, match_type, match_result, df):
     # set K_FACTOR based on match type
     k_factor = K_FACTOR_GROUP
@@ -106,6 +112,8 @@ def update_elo(team_a, team_b, match_type, match_result, df):
     df.loc[team_b, 'Rating'] = round(new_elo_b)
 
 # get the likelihood of a win, draw and loss for team a against team b
+
+
 def get_match_probabilities(team_a, team_b, df):
     # win prob
     p_win = get_win_probability(team_a, team_b, df)
@@ -141,6 +149,7 @@ def get_win_probability(team_a, team_b, df):
         (1 + pow(10, (adjusted_elo_b - adjusted_elo_a) / ELO_SCALE))
 
     return team_a_exp_win_prob
+
 
 def update_df(team_a, team_b, match_result, team_a_goals, team_b_goals, df):
     # update goals

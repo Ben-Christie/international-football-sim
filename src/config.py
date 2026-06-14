@@ -17,30 +17,21 @@ WC26GROUPS = {
     "L": ["England", "Croatia", "Ghana", "Panama"],
 }
 
+WC26_THIRD_PLACE_SLOTS = {
+    'E': ['A', 'B', 'C', 'D', 'F'],
+    'I': ['C', 'D', 'F', 'G', 'H'],
+    'D': ['B', 'E', 'F', 'I', 'J'],
+    'G': ['A', 'E', 'H', 'I', 'J'],
+    'A': ['C', 'E', 'F', 'H', 'I'],
+    'L': ['E', 'H', 'I', 'J', 'K'],
+    'B': ['E', 'F', 'G', 'I', 'J'],
+    'K': ['D', 'E', 'I', 'J', 'L'],
+}
+
 # some constants for the simulations
 N_SIMULATIONS = 1
 RANDOM_SEED = 42
 # How much a result moves the elo rating
-K_FACTOR_FINAL = 60
-K_FACTOR_KO = 50
-K_FACTOR_GROUP = 40
+K_FACTOR_KO = 40
+K_FACTOR_GROUP = 30
 ELO_SCALE = 600  # division in the Elo formula
-
-# tournament configurations
-
-WORLD_CUP = {
-    "name": "FIFA World Cup 2026",
-    "groups": WC26GROUPS,
-    "group_stage": {
-        "teams_per_group": 4,
-        "qualify_per_group": 2,
-        "best_third_places": 8,  # WC2026 specific
-        "points": {"win": 3, "draw": 1, "loss": 0}
-    },
-    "knockout_rounds": ["R32", "R16", "QF", "SF", "F"],
-    "match_types": {
-        "group": "G",
-        "knockout": "KO",
-        "final": "F"
-    }
-}
